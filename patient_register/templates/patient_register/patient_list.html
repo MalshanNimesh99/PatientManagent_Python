@@ -1,0 +1,31 @@
+{% extends "patient_register/base.html" %}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile</td>
+            <td>Birthday</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patient_list %}
+            <tr>
+                <td>{{patient.fullname}}</td>
+                <td>{{patient.mobile}}</td>
+                <td>{{patient.birthday}}</td>
+                <td>
+                    <a href="{% url 'patient_update' patient.id %}"  style="color:rgb(15, 26, 190)" class="btn px-0">edit</a>
+                    <form action="{% url 'patient_delete' patient.id %}" method="post" class="d-inline"> 
+                        {% csrf_token %}
+                        <button type="submit" class="btn" style="color:rgb(190, 15, 15)">delete</button>
+                    </form>
+                    <a href ="{% url 'patient_prescription'%}"  class="d-inline btn px=0" style="color:rgb(0, 77, 19)">Add Prescription</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'patient_insert' %}" style="float: right" class="btn btn-outline-success"> Add New Patient</a>
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% extends "patient_register/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<a href="{% url 'patient_list' %}" class="btn btn-secondary">View Patient List</a>
+<a href="{% url 'patient_insert' %}" class="btn btn-secondary">Add Patient</a>
+{% endblock content %}
